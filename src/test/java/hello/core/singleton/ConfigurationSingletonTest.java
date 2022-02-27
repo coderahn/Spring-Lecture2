@@ -30,4 +30,17 @@ public class ConfigurationSingletonTest {
         Assertions.assertThat(memberService.getMemberRepository()).isSameAs(memberRepository);
         Assertions.assertThat(orderService.getMemberRepository()).isSameAs(memberRepository);
     }
+
+    @Test
+    void configurationDeep() {
+        ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+        AppConfig appConfig = ac.getBean(AppConfig.class);
+
+        /**
+         * AppConfig.class는 @Configuration을 통해 CGLIB의 바이트코드 조작을 받음
+         * 실제 주소값은 hello.core.AppConfig$$EnhancerBySpringCGLIB$$4b5ffe77@3a45c42a로 나옴
+         * appConfig를 상속한 클래스가 실제로 등록된다.
+         */
+        System.out.println("AppConfig : " + appConfig);
+    }
 }

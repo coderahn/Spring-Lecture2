@@ -30,11 +30,13 @@ public class AutowiredTest {
         @Autowired
         public void setNoBean2(@Nullable Member noBean2) {
             System.out.println("noBean2 = " + noBean2);
+            //결과 : noBean2 = null
         }
 
         @Autowired
         public void setNoBean3(Optional<Member> noBean3) {
             System.out.println("noBean3 = " + noBean3);
+            //결과 : noBean3 = Optional.empty
         }
     }
 }
